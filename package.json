@@ -33,7 +33,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "json-server" : "json-server --watch mockData/db.json --port 8000"
+    "json-server" : "json-server --watch mockApi/db.json --port 8000 --middlewares mockApi/middleware.js"
   },
   "eslintConfig": {
     "extends": [

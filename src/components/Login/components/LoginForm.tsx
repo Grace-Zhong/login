@@ -1,61 +1,65 @@
 import { Button, TextField } from '@mui/material';
-import { Box } from '@mui/system';
 import axios from 'axios';
-import { useFormik } from 'formik';
+import { Field, Form, Formik, FormikHelpers } from 'formik';
 import React from 'react';
 
 // const apiUrl = process.env.REACT_APP_API_URL;
 
-const LoginForm = () => {
+interface submitValues {
+  username: string;
+  password: string;
+}
 
-  const formik = useFormik({
-    initialValues: {
-      username: '',
-      password: '',
-    },
-    onSubmit: values => {
-      axios.post('https://localhost:3000/users', {
-        // first_name: values.username,
-        // password: values.password,
-        first_name: 'grace',
-        password: 'grace',
-    })
-      .then(res => {
-        alert('success');
-        console.log(res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    },
-  });
+const LoginForm = () => {
+  const initialValues: submitValues = {
+    'username': '',
+    'password': '',
+  }
+
+  const loginSubmit = async (values: submitValues, actions: FormikHelpers<submitValues>) => {
+    console.log({ values });
+    try {
+      axios.post('http://localhost:8000/login', values)
+      actions.setSubmitting(false);
+      actions.resetForm();
+    } catch (error) {
+      actions.setSubmitting(false);
+    }
+  }
 
   return (
-    <Box
-      component="form"
-      onSubmit={formik.handleSubmit}
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        '& .MuiTextField-root': { width: '25ch' },
-      }}
+    <Formik
+      initialValues={initialValues}
+      // validationSchema={.object().shape({
+      //   email: Yup.string(),
+      //   password: Yup.string(),
+      // })}
+      onSubmit={loginSubmit}
     >
-      <TextField
-        label="username"
-        onChange={formik.handleChange}
-        value={formik.values.username}
-        margin="normal"
-      />
-      <TextField
-        label="password"
-        type="password"
-        onChange={formik.handleChange}
-        value={formik.values.password}
-        margin="normal"
-      />
-      <Button>Cancel</Button>
-      <Button type="submit">Submit</Button>
-    </Box>
+      {({ isSubmitting }) => (
+        <Form>
+          <Field
+            id="username"
+            name="username"
+            placeholder="User Name"
+            as={TextField}
+          />
+          <Field
+            id="password"
+            name="password"
+            placeholder="Password"
+            as={TextField}
+          />
+          <Button>Cancel</Button>
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+          >
+            Submit
+          </Button>
+        </Form>
+      )}
+    </Formik>
   );
 };
 export default LoginForm;
