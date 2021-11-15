@@ -1,7 +1,10 @@
 import { Button, TextField } from '@mui/material';
 import { Box } from '@mui/system';
+import axios from 'axios';
 import { useFormik } from 'formik';
 import React from 'react';
+
+// const apiUrl = process.env.REACT_APP_API_URL;
 
 const LoginForm = () => {
 
@@ -11,7 +14,19 @@ const LoginForm = () => {
       password: '',
     },
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+      axios.post('https://localhost:3000/users', {
+        // first_name: values.username,
+        // password: values.password,
+        first_name: 'grace',
+        password: 'grace',
+    })
+      .then(res => {
+        alert('success');
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
     },
   });
 

@@ -10,11 +10,15 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "@types/jest": "^26.0.15",
+    "@types/json-server": "^0.14.4",
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/yup": "^0.29.13",
+    "axios": "^0.24.0",
+    "dotenv": "^10.0.0",
     "formik": "^2.2.9",
+    "json-server": "^0.17.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router": "^6.0.2",
@@ -28,7 +32,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "json-server" : "json-server --watch mockData/db.json --port 8000"
   },
   "eslintConfig": {
     "extends": [
