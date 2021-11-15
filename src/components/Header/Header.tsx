@@ -5,24 +5,24 @@ import { Link } from 'react-router-dom';
 const Header = () => {
   return (
     <Toolbar
-      sx={{
-        backgroundColor: 'rgba(138, 138, 138, 0.2)'
-      }}
+      // sx={{
+      //   backgroundColor: 'rgba(138, 138, 138, 0.2)'
+      // }}
     >
       <Button
-        sx={{
-          fontSize: '23px'
-        }}
+        // sx={{
+        //   fontSize: '23px'
+        // }}
       >
         <Link to='/'>
           Home
         </Link>
       </Button>
       <Button
-        sx={{
-          fontSize: '23px',
-          paddingLeft: '30px',
-        }}
+        // sx={{
+        //   fontSize: '23px',
+        //   paddingLeft: '30px',
+        // }}
       >
         <Link to='/login'>
           Login
