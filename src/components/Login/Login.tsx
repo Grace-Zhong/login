@@ -6,9 +6,9 @@ import useStyles from './Login.style';
 const Login = () => {
 
   const classes = useStyles();
-  const [openSucessMsg, setOpenSuccessMsg] = useState(false);
+  const [openSuccessMsg, setOpenSuccessMsg] = useState(false);
   const [openFailMsg, setOpenFailMsg] = useState(false);
-  
+
   const handleCloseSuccessMsg = () => {
     setOpenSuccessMsg(false);
   };
@@ -32,8 +32,9 @@ const Login = () => {
       />
 
       <Snackbar
-        open={openSucessMsg}
+        open={openSuccessMsg}
         onClose={handleCloseSuccessMsg}
+        anchorOrigin={{ vertical:'top', horizontal:'center' }}
       >
         <Alert severity="success">
           Login successful!
@@ -42,6 +43,7 @@ const Login = () => {
       <Snackbar
         open={openFailMsg}
         onClose={handleCloseFailMsg}
+        anchorOrigin={{ vertical:'top', horizontal:'center' }}
       >
         <Alert severity="error">
           Incorrect username or password!
