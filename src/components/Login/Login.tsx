@@ -27,7 +27,7 @@ const Login = () => {
         Login
       </Typography>
       <LoginForm
-        setOpenSucessMsg={setOpenSuccessMsg}
+        setOpenSuccessMsg={setOpenSuccessMsg}
         setOpenFailMsg={setOpenFailMsg}
       />
 

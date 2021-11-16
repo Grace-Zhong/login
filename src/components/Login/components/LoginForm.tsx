@@ -8,11 +8,11 @@ import useStyles from './LoginForm.style';
 import * as Yup from 'yup';
 
 interface IProps {
-  setOpenSucessMsg: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpenSuccessMsg: React.Dispatch<React.SetStateAction<boolean>>;
   setOpenFailMsg: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const LoginForm = ({ setOpenSucessMsg, setOpenFailMsg } : IProps) => {
+const LoginForm = ({ setOpenSuccessMsg, setOpenFailMsg } : IProps) => {
   const classes = useStyles();
   const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ const LoginForm = ({ setOpenSucessMsg, setOpenFailMsg } : IProps) => {
     try {
       const loginResponse = await login(values);
       if (loginResponse.status === 200) {
-        setOpenSucessMsg(true);
+        setOpenSuccessMsg(true);
         actions.setSubmitting(false);
         actions.resetForm();
       }
