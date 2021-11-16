@@ -7,9 +7,14 @@ const Login = () => {
 
   const classes = useStyles();
   const [openSucessMsg, setOpenSuccessMsg] = useState(false);
+  const [openFailMsg, setOpenFailMsg] = useState(false);
   
   const handleCloseSuccessMsg = () => {
     setOpenSuccessMsg(false);
+  };
+
+  const handleCloseFailMsg = () => {
+    setOpenFailMsg(false);
   };
 
   return (
@@ -23,6 +28,7 @@ const Login = () => {
       </Typography>
       <LoginForm
         setOpenSucessMsg={setOpenSuccessMsg}
+        setOpenFailMsg={setOpenFailMsg}
       />
       <Snackbar
         open={openSucessMsg}
@@ -30,6 +36,14 @@ const Login = () => {
       >
         <Alert severity="success">
           Login successful!
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={openFailMsg}
+        onClose={handleCloseFailMsg}
+      >
+        <Alert severity="error">
+          Incorrect username or password!
         </Alert>
       </Snackbar>
     </Box>

@@ -8,9 +8,10 @@ import useStyles from './LoginForm.style';
 
 interface IProps {
   setOpenSucessMsg: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpenFailMsg: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const LoginForm = ({setOpenSucessMsg}:IProps) => {
+const LoginForm = ({ setOpenSucessMsg, setOpenFailMsg } : IProps) => {
   const classes = useStyles();
   const navigate = useNavigate();
 
@@ -29,6 +30,7 @@ const LoginForm = ({setOpenSucessMsg}:IProps) => {
         actions.resetForm();
       }
     } catch (err : any) {
+      setOpenFailMsg(true);
       actions.setSubmitting(false);
       console.log(err);
     }
@@ -52,6 +54,7 @@ const LoginForm = ({setOpenSucessMsg}:IProps) => {
               id="password"
               name="password"
               placeholder="Password"
+              type="password"
               as={TextField}
               className={classes.textfield}
             />
