@@ -55,5 +55,34 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*.style.{js,jsx,ts,tsx}",
+      "!<rootDir>/node_modules/",
+      "!<rootDir>/path/to/dir/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
+    },
+    "coveragePathIgnorePatterns": [
+      "src/mockApi",
+      "src/assets",
+      "src/common",
+      "src/store",
+      "src/utils",
+      "src/libs",
+      "src/config",
+      "src/react-app-env.d.ts",
+      "src/global.d.ts",
+      "src/setupTests.ts",
+      "src/index.tsx"
+    ]
   }
 }
