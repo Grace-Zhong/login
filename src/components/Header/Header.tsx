@@ -4,26 +4,13 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <Toolbar
-      // sx={{
-      //   backgroundColor: 'rgba(138, 138, 138, 0.2)'
-      // }}
-    >
-      <Button
-        // sx={{
-        //   fontSize: '23px'
-        // }}
-      >
+    <Toolbar>
+      <Button>
         <Link to='/'>
           Home
         </Link>
       </Button>
-      <Button
-        // sx={{
-        //   fontSize: '23px',
-        //   paddingLeft: '30px',
-        // }}
-      >
+      <Button>
         <Link to='/login'>
           Login
         </Link>

@@ -1,11 +1,14 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import Header from '../Header';
+import { MemoryRouter } from 'react-router';
 
-describe('<App />', () => {
-  it('should display header', () => {
+describe('<Header />', () => {
+  it('should display HOME and LOGIN links', () => {
     render(
-      <App />
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>
     );
     expect(screen.getByText('Home')).toBeInTheDocument();
     expect(screen.getByText('Login')).toBeInTheDocument();

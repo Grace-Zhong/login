@@ -22,7 +22,6 @@ const LoginForm = ({ setOpenSucessMsg, setOpenFailMsg } : IProps) => {
   }
 
   const loginSubmit = async (values: ILoginValues, actions: FormikHelpers<ILoginValues>) => {
-    console.log({ values });
     try {
       const loginResponse = await login(values);
       if (loginResponse.status === 200) {
@@ -33,7 +32,6 @@ const LoginForm = ({ setOpenSucessMsg, setOpenFailMsg } : IProps) => {
     } catch (err : any) {
       setOpenFailMsg(true);
       actions.setSubmitting(false);
-      console.log(err);
     }
   }
 
