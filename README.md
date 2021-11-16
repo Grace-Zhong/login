@@ -32,9 +32,10 @@ You can use the following information to login.
 npm start
 ```
 
-## Run Json-server
+## Run fake backend
 ```
-npm run json-server
+cd server
+npm start
 ```
 
 ## Run Tests
