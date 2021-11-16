@@ -1,39 +1,33 @@
 import { Button, TextField } from '@mui/material';
-import axios from 'axios';
 import { Field, Form, Formik, FormikHelpers } from 'formik';
 import React from 'react';
 import { useNavigate } from 'react-router';
+import ILoginValues from '../../../Interfaces/ILoginValues';
+import { login } from '../../../utils/apiUtils';
 import useStyles from './LoginForm.style';
-
-// const apiUrl = process.env.REACT_APP_API_URL;
-
-interface submitValues {
-  username: string;
-  password: string;
-}
 
 const LoginForm = () => {
   const classes = useStyles();
   const navigate = useNavigate();
 
-  const initialValues: submitValues = {
+  const initialValues: ILoginValues = {
     'username': '',
     'password': '',
   }
 
-  const loginSubmit = async (values: submitValues, actions: FormikHelpers<submitValues>) => {
+  const loginSubmit = async (values: ILoginValues, actions: FormikHelpers<ILoginValues>) => {
     console.log({ values });
     try {
-      axios.post('http://localhost:8000/login', values)
+      const loginResponse = await login(values);
+      if (loginResponse.status === 200) {
+        alert('success');
+        actions.setSubmitting(false);
+        actions.resetForm();
+      }
+    } catch (err : any) {
       actions.setSubmitting(false);
-      actions.resetForm();
-    } catch (error) {
-      actions.setSubmitting(false);
+      console.log(err);
     }
-  }
-
-  const handleCancle = () => {
-    navigate('/');
   }
 
   return (
@@ -58,7 +52,7 @@ const LoginForm = () => {
               className={classes.textfield}
             />
             <Button
-              onClick={handleCancle}
+              onClick={() => navigate('/')}
             >
               Cancel
             </Button>
