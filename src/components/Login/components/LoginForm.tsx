@@ -17,8 +17,8 @@ const LoginForm = ({ setOpenSucessMsg, setOpenFailMsg } : IProps) => {
   const navigate = useNavigate();
 
   const initialValues: ILoginValues = {
-    'username': '',
-    'password': '',
+    username: '',
+    password: '',
   }
 
   const loginSubmit = async (values: ILoginValues, actions: FormikHelpers<ILoginValues>) => {
@@ -57,9 +57,9 @@ const LoginForm = ({ setOpenSucessMsg, setOpenFailMsg } : IProps) => {
               as={TextField}
               className={classes.textfield}
             />
-            {errors.username && touched.username ? (
-            <div className={classes.error_msg}>{errors.username}</div>
-            ) : null}
+            {errors.username && touched.username && (
+              <div className={classes.error_msg}>{errors.username}</div>
+            )}
           <Field
               id="password"
               name="password"
@@ -68,9 +68,9 @@ const LoginForm = ({ setOpenSucessMsg, setOpenFailMsg } : IProps) => {
               as={TextField}
               className={classes.textfield}
             />
-            {errors.password && touched.password ? (
-            <div className={classes.error_msg}>{errors.password}</div>
-          ) : null}
+            {errors.password && touched.password && (
+              <div className={classes.error_msg}>{errors.password}</div>
+            )}
           <Button
             onClick={() => navigate('/')}
           >
