@@ -23,6 +23,7 @@ npm install
 ```
 
 ## User Account
+You can use the following information to login.
 - username: user
 - password: user
 
