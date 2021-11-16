@@ -33,5 +33,5 @@ npm run json-server
 
 ## Run Tests
 ```
-npm 
+npm test
 ```

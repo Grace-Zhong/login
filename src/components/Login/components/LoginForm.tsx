@@ -2,6 +2,7 @@ import { Button, TextField } from '@mui/material';
 import axios from 'axios';
 import { Field, Form, Formik, FormikHelpers } from 'formik';
 import React from 'react';
+import useStyles from './LoginForm.style';
 
 // const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -11,6 +12,8 @@ interface submitValues {
 }
 
 const LoginForm = () => {
+  const classes = useStyles();
+
   const initialValues: submitValues = {
     'username': '',
     'password': '',
@@ -30,33 +33,31 @@ const LoginForm = () => {
   return (
     <Formik
       initialValues={initialValues}
-      // validationSchema={.object().shape({
-      //   email: Yup.string(),
-      //   password: Yup.string(),
-      // })}
       onSubmit={loginSubmit}
     >
       {({ isSubmitting }) => (
-        <Form>
-          <Field
-            id="username"
-            name="username"
-            placeholder="User Name"
-            as={TextField}
-          />
-          <Field
-            id="password"
-            name="password"
-            placeholder="Password"
-            as={TextField}
-          />
-          <Button>Cancel</Button>
-          <Button
-            type="submit"
-            disabled={isSubmitting}
-          >
-            Submit
-          </Button>
+        <Form className={classes.form}>
+            <Field
+              id="username"
+              name="username"
+              placeholder="User Name"
+              as={TextField}
+              className={classes.textfield}
+            />
+            <Field
+              id="password"
+              name="password"
+              placeholder="Password"
+              as={TextField}
+              className={classes.textfield}
+            />
+            <Button>Cancel</Button>
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+            >
+              Submit
+            </Button>
         </Form>
       )}
     </Formik>
