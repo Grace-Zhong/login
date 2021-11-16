@@ -71,15 +71,13 @@
       }
     },
     "coveragePathIgnorePatterns": [
+      "reportWebVitals.ts",
       "src/mockApi",
       "src/assets",
       "src/common",
-      "src/store",
       "src/utils",
       "src/libs",
-      "src/config",
       "src/react-app-env.d.ts",
-      "src/global.d.ts",
       "src/setupTests.ts",
       "src/index.tsx"
     ]
