@@ -2,6 +2,7 @@ import { Button, TextField } from '@mui/material';
 import axios from 'axios';
 import { Field, Form, Formik, FormikHelpers } from 'formik';
 import React from 'react';
+import { useNavigate } from 'react-router';
 import useStyles from './LoginForm.style';
 
 // const apiUrl = process.env.REACT_APP_API_URL;
@@ -13,6 +14,7 @@ interface submitValues {
 
 const LoginForm = () => {
   const classes = useStyles();
+  const navigate = useNavigate();
 
   const initialValues: submitValues = {
     'username': '',
@@ -28,6 +30,10 @@ const LoginForm = () => {
     } catch (error) {
       actions.setSubmitting(false);
     }
+  }
+
+  const handleCancle = () => {
+    navigate('/');
   }
 
   return (
@@ -51,7 +57,11 @@ const LoginForm = () => {
               as={TextField}
               className={classes.textfield}
             />
-            <Button>Cancel</Button>
+            <Button
+              onClick={handleCancle}
+            >
+              Cancel
+            </Button>
             <Button
               type="submit"
               disabled={isSubmitting}
