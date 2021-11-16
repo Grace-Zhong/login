@@ -2,11 +2,15 @@ import { Button, TextField } from '@mui/material';
 import { Field, Form, Formik, FormikHelpers } from 'formik';
 import React from 'react';
 import { useNavigate } from 'react-router';
-import ILoginValues from '../../../Interfaces/ILoginValues';
+import ILoginValues from '../../../common/Interfaces/ILoginValues';
 import { login } from '../../../utils/apiUtils';
 import useStyles from './LoginForm.style';
 
-const LoginForm = () => {
+interface IProps {
+  setOpenSucessMsg: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const LoginForm = ({setOpenSucessMsg}:IProps) => {
   const classes = useStyles();
   const navigate = useNavigate();
 
@@ -20,7 +24,7 @@ const LoginForm = () => {
     try {
       const loginResponse = await login(values);
       if (loginResponse.status === 200) {
-        alert('success');
+        setOpenSucessMsg(true);
         actions.setSubmitting(false);
         actions.resetForm();
       }

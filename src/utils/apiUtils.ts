@@ -1,5 +1,5 @@
 import axios from "axios";
-import ILoginValues from "../Interfaces/ILoginValues";
+import ILoginValues from "../common/Interfaces/ILoginValues";
 
 const baseUrl = process.env.REACT_APP_API_URL;
 
