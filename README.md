@@ -21,6 +21,11 @@ Following requirements should be satisfied before running this application
 ```
 npm install
 ```
+
+## User Account
+- username: user
+- password: user
+
 ## Run Application
 ```
 npm start

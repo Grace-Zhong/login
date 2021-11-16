@@ -30,6 +30,7 @@ const Login = () => {
         setOpenSucessMsg={setOpenSuccessMsg}
         setOpenFailMsg={setOpenFailMsg}
       />
+
       <Snackbar
         open={openSucessMsg}
         onClose={handleCloseSuccessMsg}

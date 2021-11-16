@@ -5,8 +5,12 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
   },
+  error_msg: {
+    fontSize: '12px',
+    color: 'red',
+  },
   textfield: {
-    margin: '20px 0px',
+    margin: '10px 0px',
   }
 });
 

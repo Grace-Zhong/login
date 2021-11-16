@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router';
 import ILoginValues from '../../../common/Interfaces/ILoginValues';
 import { login } from '../../../utils/apiUtils';
 import useStyles from './LoginForm.style';
+import * as Yup from 'yup';
 
 interface IProps {
   setOpenSucessMsg: React.Dispatch<React.SetStateAction<boolean>>;
@@ -36,21 +37,32 @@ const LoginForm = ({ setOpenSucessMsg, setOpenFailMsg } : IProps) => {
     }
   }
 
+  const LoginSchema = Yup.object().shape({
+    username: Yup.string().trim()
+      .required('Username cannot be empty'),
+    password: Yup.string()
+      .required('Password cannot be empty'),
+  });
+
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={loginSubmit}
+      validationSchema={LoginSchema}
     >
-      {({ isSubmitting }) => (
+      {({ isSubmitting, errors, touched }) => (
         <Form className={classes.form}>
-            <Field
+          <Field
               id="username"
               name="username"
               placeholder="User Name"
               as={TextField}
               className={classes.textfield}
             />
-            <Field
+            {errors.username && touched.username ? (
+            <div className={classes.error_msg}>{errors.username}</div>
+            ) : null}
+          <Field
               id="password"
               name="password"
               placeholder="Password"
@@ -58,17 +70,20 @@ const LoginForm = ({ setOpenSucessMsg, setOpenFailMsg } : IProps) => {
               as={TextField}
               className={classes.textfield}
             />
-            <Button
-              onClick={() => navigate('/')}
-            >
-              Cancel
-            </Button>
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-            >
-              Submit
-            </Button>
+            {errors.password && touched.password ? (
+            <div className={classes.error_msg}>{errors.password}</div>
+          ) : null}
+          <Button
+            onClick={() => navigate('/')}
+          >
+            Cancel
+          </Button>
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+          >
+            Submit
+          </Button>
         </Form>
       )}
     </Formik>
