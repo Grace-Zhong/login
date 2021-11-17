@@ -12,7 +12,7 @@ const useStyles = makeStyles({
     color: 'red',
   },
   textfield: {
-    margin: '10px 0px',
+    margin: '10px 10px',
   }
 });
 

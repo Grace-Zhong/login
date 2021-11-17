@@ -12,16 +12,19 @@ interface IProps {
   setOpenFailMsg: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const LoginForm = ({ setOpenSuccessMsg, setOpenFailMsg } : IProps) => {
+const LoginForm = ({ setOpenSuccessMsg, setOpenFailMsg }: IProps) => {
   const classes = useStyles();
   const navigate = useNavigate();
 
   const initialValues: ILoginValues = {
     username: '',
     password: '',
-  }
+  };
 
-  const loginSubmit = async (values: ILoginValues, actions: FormikHelpers<ILoginValues>) => {
+  const loginSubmit = async (
+    values: ILoginValues,
+    actions: FormikHelpers<ILoginValues>
+  ) => {
     try {
       const loginResponse = await login(values);
       if (loginResponse.status === 200) {
@@ -29,17 +32,15 @@ const LoginForm = ({ setOpenSuccessMsg, setOpenFailMsg } : IProps) => {
         actions.setSubmitting(false);
         actions.resetForm();
       }
-    } catch (err : any) {
+    } catch (err: any) {
       setOpenFailMsg(true);
       actions.setSubmitting(false);
     }
-  }
+  };
 
   const LoginSchema = Yup.object().shape({
-    username: Yup.string().trim()
-      .required('Username cannot be empty'),
-    password: Yup.string()
-      .required('Password cannot be empty'),
+    username: Yup.string().trim().required('Username cannot be empty'),
+    password: Yup.string().required('Password cannot be empty'),
   });
 
   return (
@@ -51,37 +52,32 @@ const LoginForm = ({ setOpenSuccessMsg, setOpenFailMsg } : IProps) => {
       {({ isSubmitting, errors, touched }) => (
         <Form className={classes.form}>
           <Field
-              id="username"
-              name="username"
-              placeholder="User Name"
-              as={TextField}
-              className={classes.textfield}
-            />
-            {errors.username && touched.username && (
-              <div className={classes.error_msg}>{errors.username}</div>
-            )}
+            id="username"
+            name="username"
+            placeholder="User Name"
+            as={TextField}
+            className={classes.textfield}
+            sx={{ mb: 5 }}
+          />
+          {errors.username && touched.username && (
+            <div className={classes.error_msg}>{errors.username}</div>
+          )}
           <Field
-              id="password"
-              name="password"
-              placeholder="Password"
-              type="password"
-              as={TextField}
-              className={classes.textfield}
-            />
-            {errors.password && touched.password && (
-              <div className={classes.error_msg}>{errors.password}</div>
-            )}
-          <Button
-            onClick={() => navigate('/')}
-          >
-            Cancel
-          </Button>
-          <Button
-            type="submit"
-            disabled={isSubmitting}
-          >
+            id="password"
+            name="password"
+            placeholder="Password"
+            type="password"
+            as={TextField}
+            className={classes.textfield}
+            sx={{ mb: 5 }}
+          />
+          {errors.password && touched.password && (
+            <div className={classes.error_msg}>{errors.password}</div>
+          )}
+          <Button type="submit" disabled={isSubmitting}>
             Submit
           </Button>
+          <Button onClick={() => navigate('/')}>Cancel</Button>
         </Form>
       )}
     </Formik>
