@@ -2,11 +2,30 @@
   {
     "id": 1,
     "name": "Home",
-    "path": "/"
+    "path": "/",
+    "subMenu": []
   },
   {
     "id": 2,
     "name": "Login",
-    "path": "/login"
+    "path": "/login",
+    "subMenu": []
+  },
+  {
+    "id": 3,
+    "name": "Outter",
+    "path": null,
+    "subMenu": [
+      {
+        "id": 1,
+        "name": "InnerOne",
+        "path": "/1"
+      },
+      {
+        "id": 2,
+        "name": "InnerTwo",
+        "path": "/2"
+      }
+    ]
   }
 ]

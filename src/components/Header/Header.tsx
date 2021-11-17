@@ -1,22 +1,68 @@
-import { Button, Toolbar } from '@mui/material';
+import { Button, Toolbar, Menu, MenuItem } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import IMenuItem from '../../common/Interfaces/IMenuItem';
+import ISubMenuItem from '../../common/Interfaces/ISubMenuItem';
 import menuData from './menuData.json';
 
 const Header = () => {
-  const renderMenuBtn = (item:IMenuItem) => (
-    <Button key={item.id}>
-      <Link to={item.path}>
-        {item.name}
-      </Link>
-    </Button>
-  )
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const renderMenuBtn = (item:IMenuItem) => {
+    if (item.path) {
+      return (
+        <Button key={item.id}>
+          <Link to={item.path}>
+            {item.name}
+          </Link>
+        </Button>
+      )
+    } else {
+      return (
+        <div key={item.id}>
+          <Button
+            id="basic-button"
+            aria-controls="basic-menu"
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleClick}
+          >
+            {item.name}
+          </Button>
+          <Menu
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              'aria-labelledby': 'basic-button',
+            }}
+          >
+            {item.subMenu?.map((subItem:ISubMenuItem) => (
+              <MenuItem onClick={handleClose} key={subItem.id}>
+                <Link to={subItem.path}>
+                  {subItem.name}
+                </Link>
+              </MenuItem>
+            ))}
+          </Menu>
+        </div>
+      )
+    }
+}
 
   return (
-    <Toolbar>
-      {menuData.map((item:IMenuItem) => renderMenuBtn(item))}
-    </Toolbar>
+    <div>
+      <Toolbar>
+        {menuData.map((item:IMenuItem) => renderMenuBtn(item))}
+      </Toolbar>
+    </div>
   );
 };
 export default Header;
