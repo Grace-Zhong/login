@@ -1,8 +1,8 @@
-import ISubMenuItem from "./ISubMenuItem";
+import ISubMenuItem from './ISubMenuItem';
 
 export default interface IMenuItem {
-  id: number,
-  name: string,
-  path: string | null,
-  subMenu: ISubMenuItem[] | [],
+  id: number;
+  name: string;
+  path: string | null;
+  subMenu: ISubMenuItem[] | [];
 }

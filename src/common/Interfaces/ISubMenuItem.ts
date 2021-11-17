@@ -1,5 +1,5 @@
 export default interface ISubMenuItem {
-  id: number,
-  name: string,
-  path: string,
+  id: number;
+  name: string;
+  path: string;
 }

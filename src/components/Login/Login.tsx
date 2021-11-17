@@ -4,7 +4,6 @@ import LoginForm from './components/LoginForm';
 import useStyles from './Login.style';
 
 const Login = () => {
-
   const classes = useStyles();
   const [openSuccessMsg, setOpenSuccessMsg] = useState(false);
   const [openFailMsg, setOpenFailMsg] = useState(false);
@@ -19,11 +18,7 @@ const Login = () => {
 
   return (
     <Box className={classes.root}>
-      <Typography
-        gutterBottom
-        align="center"
-        variant="h3"
-      >
+      <Typography gutterBottom align="center" variant="h3">
         Login
       </Typography>
       <LoginForm
@@ -34,20 +29,16 @@ const Login = () => {
       <Snackbar
         open={openSuccessMsg}
         onClose={handleCloseSuccessMsg}
-        anchorOrigin={{ vertical:'top', horizontal:'center' }}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       >
-        <Alert severity="success">
-          Login successful!
-        </Alert>
+        <Alert severity="success">Login successful!</Alert>
       </Snackbar>
       <Snackbar
         open={openFailMsg}
         onClose={handleCloseFailMsg}
-        anchorOrigin={{ vertical:'top', horizontal:'center' }}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       >
-        <Alert severity="error">
-          Incorrect username or password!
-        </Alert>
+        <Alert severity="error">Incorrect username or password!</Alert>
       </Snackbar>
     </Box>
   );

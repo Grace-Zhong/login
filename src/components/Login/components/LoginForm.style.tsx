@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   },
   textfield: {
     margin: '10px 10px',
-  }
+  },
 });
 
 export default useStyles;

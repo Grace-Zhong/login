@@ -12,4 +12,4 @@ describe('<Home />', () => {
     );
     expect(screen.getByText('Hello World!')).toBeInTheDocument();
   });
-})
+});

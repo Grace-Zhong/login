@@ -17,15 +17,13 @@ const Header = () => {
     setAnchorEl(null);
   };
 
-  const renderMenuBtn = (item:IMenuItem) => {
+  const renderMenuBtn = (item: IMenuItem) => {
     if (item.path) {
       return (
         <Link to={item.path} key={item.id} className={classes.link}>
-          <Button>
-          {item.name}
-          </Button>
+          <Button>{item.name}</Button>
         </Link>
-      )
+      );
     } else {
       return (
         <div key={item.id}>
@@ -46,7 +44,7 @@ const Header = () => {
               'aria-labelledby': 'basic-button',
             }}
           >
-            {item.subMenu?.map((subItem:ISubMenuItem) => (
+            {item.subMenu?.map((subItem: ISubMenuItem) => (
               <MenuItem onClick={handleClose} key={subItem.id}>
                 <Link to={subItem.path} className={classes.link}>
                   <Button>{subItem.name}</Button>
@@ -55,14 +53,14 @@ const Header = () => {
             ))}
           </Menu>
         </div>
-      )
+      );
     }
-}
+  };
 
   return (
     <div>
       <Toolbar>
-        {menuData.map((item:IMenuItem) => renderMenuBtn(item))}
+        {menuData.map((item: IMenuItem) => renderMenuBtn(item))}
       </Toolbar>
     </div>
   );
