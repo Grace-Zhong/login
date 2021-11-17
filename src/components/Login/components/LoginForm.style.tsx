@@ -4,6 +4,8 @@ const useStyles = makeStyles({
   form: {
     display: 'flex',
     flexDirection: 'column',
+    maxWidth: '750px',
+    margin: '50px auto',
   },
   error_msg: {
     fontSize: '12px',
