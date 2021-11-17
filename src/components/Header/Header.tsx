@@ -5,17 +5,17 @@ import IMenuItem from '../../common/Interfaces/IMenuItem';
 import menuData from './menuData.json';
 
 const Header = () => {
-  // const renderMenuBtn = ()
+  const renderMenuBtn = (item:IMenuItem) => (
+    <Button key={item.id}>
+      <Link to={item.path}>
+        {item.name}
+      </Link>
+    </Button>
+  )
 
   return (
     <Toolbar>
-      {menuData.map((item:IMenuItem) => (
-        <Button key={item.id}>
-          <Link to={item.path}>
-            {item.name}
-          </Link>
-        </Button>
-      ))}
+      {menuData.map((item:IMenuItem) => renderMenuBtn(item))}
     </Toolbar>
   );
 };
