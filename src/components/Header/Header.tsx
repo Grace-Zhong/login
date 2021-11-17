@@ -3,9 +3,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import IMenuItem from '../../common/Interfaces/IMenuItem';
 import ISubMenuItem from '../../common/Interfaces/ISubMenuItem';
+import useStyles from './Header.style';
 import menuData from './menuData.json';
 
 const Header = () => {
+  const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -18,11 +20,11 @@ const Header = () => {
   const renderMenuBtn = (item:IMenuItem) => {
     if (item.path) {
       return (
-        <Button key={item.id}>
-          <Link to={item.path}>
-            {item.name}
-          </Link>
-        </Button>
+        <Link to={item.path} key={item.id} className={classes.link}>
+          <Button>
+          {item.name}
+          </Button>
+        </Link>
       )
     } else {
       return (
@@ -46,8 +48,8 @@ const Header = () => {
           >
             {item.subMenu?.map((subItem:ISubMenuItem) => (
               <MenuItem onClick={handleClose} key={subItem.id}>
-                <Link to={subItem.path}>
-                  {subItem.name}
+                <Link to={subItem.path} className={classes.link}>
+                  <Button>{subItem.name}</Button>
                 </Link>
               </MenuItem>
             ))}
