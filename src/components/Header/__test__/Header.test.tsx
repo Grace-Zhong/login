@@ -26,18 +26,17 @@ describe('<Header />', () => {
     userEvent.click(screen.getByText('Home'));
   });
 
-  // it('should click space and not render submenu', async () => {
-  //   render(
-  //     <MemoryRouter>
-  //       <Header />
-  //     </MemoryRouter>
-  //   );
-  //   act(() => {
-  //     userEvent.click(screen.getByText('Outter'));
-  //     userEvent.click(screen.getByText('Outter'));
-  //   })
-  //   userEvent.click(screen.getByText('Outter'));
-  //   screen.debug(undefined, 3000)
-  //   await waitFor(() => expect(screen.queryByText(/InnerOne/i)).not.toBeInTheDocument());
-  // });
+  it('should click submenu and close submenu', async () => {
+    render(
+      <MemoryRouter>
+        <Header />
+      </MemoryRouter>
+    );
+    act(() => {
+      userEvent.click(screen.getByText('Outter'));
+      
+    })
+    userEvent.click(screen.getByText(/innerone/i));
+    await waitFor(() => expect(screen.queryByText(/innerone/i)).not.toBeInTheDocument());
+  });
 });
