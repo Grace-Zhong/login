@@ -24,7 +24,6 @@ describe('<Header />', () => {
     userEvent.click(screen.getByText('Outter'));
     expect(screen.getByText(/InnerOne/i)).toBeInTheDocument();
     userEvent.click(screen.getByText('Home'));
-    screen.debug(undefined, 3000);
   });
 
   // it('should click space and not render submenu', () => {
