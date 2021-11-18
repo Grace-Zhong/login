@@ -100,6 +100,7 @@ const LoginForm = () => {
         open={openFailMsg}
         onClose={handleCloseFailMsg}
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        autoHideDuration={1000}
       >
         <Alert severity="error">Incorrect username or password!</Alert>
       </Snackbar>

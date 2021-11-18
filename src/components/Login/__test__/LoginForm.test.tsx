@@ -108,13 +108,30 @@ describe('<LoginForm /> call apis', () => {
     await waitFor(() =>
       expect(screen.getByText(/incorrect/i)).toBeInTheDocument()
     );
-    // act(() => {
-    //   fireEvent.change(screen.getByPlaceholderText(/User Name/i), {
-    //     target: { value: 'abc' },
-    //   });
-    // });
-    // await waitFor(() =>
-    //   expect(screen.queryByText(/incorrect/i)).not.toBeInTheDocument()
-    // );
+
+    await waitFor(() => expect(screen.queryByText(/incorrect/i)).not.toBeVisible());
+  });
+
+  it('should do nothing if mockapi not return 200', async () => {
+    const login = jest.spyOn(apiUtils, 'login').mockResolvedValue({
+      respose: { status: 300 },
+    } as unknown as AxiosPromise);
+    render(
+      <MemoryRouter>
+        <LoginForm />
+      </MemoryRouter>
+    );
+    act(() => {
+      fireEvent.change(screen.getByPlaceholderText(/User Name/i), {
+        target: { value: 'abc' },
+      });
+      fireEvent.change(screen.getByPlaceholderText(/Password/i), {
+        target: { value: 'abc' },
+      });
+    });
+    userEvent.click(screen.getByRole('button', { name: /submit/i }));
+    await waitFor(() =>
+      expect(login).not.toBeCalled()
+    );
   });
 });
