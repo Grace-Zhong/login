@@ -15,12 +15,24 @@ This project was bootstarpped with
 - React Testing Library
 - Jest
 
-## Preparation
-Following requirements should be satisfied before running this application
+## Before launch this application
+Following requirements should be satisfied
 1. Node.js is installed with v14.
 2. Install all dependencies
 ```
 npm install
+cd server
+npm install
+```
+
+## Run Application
+```
+npm start
+```
+
+## Run backend
+```
+npm start
 ```
 
 ## User Account
@@ -28,19 +40,10 @@ You can use the following information to login.
 - username: user
 - password: user
 
-## Run Application
-```
-npm start
-```
-
-## Run fake backend
-```
-cd server
-npm install
-npm start
-```
-
-## Run Tests
+## Tests
+#### Run tests
 ```
 npm run test-c
 ```
+#### Test Coverage
+[<img src="./docs/test_coverage_18Nov2021.png">]()
