@@ -6,10 +6,9 @@ import * as apiUtils from '../../../utils/apiUtils';
 import { AxiosPromise } from 'axios';
 import { act } from 'react-dom/test-utils';
 import userEvent from '@testing-library/user-event';
-import { createMemoryHistory } from 'history';
+import * as history from 'react-router';
 
 describe('<LoginForm /> render elements', () => {
-
   it('should render login form', () => {
     render(
       <MemoryRouter>
@@ -35,21 +34,25 @@ describe('<LoginForm /> render elements', () => {
       target: { value: '' },
     });
     fireEvent.click(screen.getByText(/Submit/i));
-    expect(await screen.findByText(/Username cannot be empty/i)).toBeInTheDocument();
-    expect(await screen.findByText(/Password cannot be empty/i)).toBeInTheDocument();
+    expect(
+      await screen.findByText(/Username cannot be empty/i)
+    ).toBeInTheDocument();
+    expect(
+      await screen.findByText(/Password cannot be empty/i)
+    ).toBeInTheDocument();
   });
 
-  // it('should redirect to Home page if click cancel', async () => {
-  //   const history = createMemoryHistory();
-  //   render(
-  //     <MemoryRouter>
-  //       <LoginForm />
-  //     </MemoryRouter>
-  //   );
-  //   fireEvent.click(screen.getByText(/Cancel/i));
-    
-  // });
-
+  it('should redirect to Home page if click cancel', async () => {
+    const nagivate = jest.fn();
+    jest.spyOn(history, 'useNavigate').mockReturnValue(nagivate);
+    render(
+      <MemoryRouter>
+        <LoginForm />
+      </MemoryRouter>
+    );
+    fireEvent.click(screen.getByText(/Cancel/i));
+    expect(nagivate).toBeCalledWith('/');
+  });
 });
 
 describe('<LoginForm /> call apis', () => {
@@ -74,31 +77,44 @@ describe('<LoginForm /> call apis', () => {
         target: { value: 'user' },
       });
     });
-    userEvent.click(screen.getByRole('button', {name: /submit/i}));
-    await waitFor(() => expect(screen.getByText(/Login successful!/i)).toBeInTheDocument());
-    userEvent.click(screen.getByRole('button', {name: /submit/i}));
-    await waitFor(() => expect(screen.queryByText(/Login successful!/i)).not.toBeInTheDocument());
+    userEvent.click(screen.getByRole('button', { name: /submit/i }));
+    await waitFor(() =>
+      expect(screen.getByText(/Login successful!/i)).toBeInTheDocument()
+    );
+    userEvent.click(screen.getByRole('button', { name: /submit/i }));
+    await waitFor(() =>
+      expect(screen.queryByText(/Login successful!/i)).not.toBeInTheDocument()
+    );
   });
 
-  // it('should display Incorrect username or password! if mockapi return 400', async () => {
-  //   jest
-  //     .spyOn(apiUtils, 'login')
-  //     .mockResolvedValue({ status: 400 } as unknown as AxiosPromise);
-  //   render(
-  //     <MemoryRouter>
-  //       <LoginForm />
-  //     </MemoryRouter>
-  //   );
-  //   act(() => {
-  //     fireEvent.change(screen.getByPlaceholderText(/User Name/i), {
-  //       target: { value: 'abc' },
-  //     });
-  //     fireEvent.change(screen.getByPlaceholderText(/Password/i), {
-  //       target: { value: 'abc' },
-  //     });
-  //   });
-  //   userEvent.click(screen.getByRole('button', {name: /submit/i}));
-  //   screen.debug(undefined, 3000);
-  //   await waitFor(() => expect(screen.getByText(/Incorrec/i)).toBeInTheDocument());
-  // });
+  it('should display Incorrect username or password! if mockapi return 400', async () => {
+    jest.spyOn(apiUtils, 'login').mockRejectedValue({
+      respose: { status: 400 },
+    } as unknown as AxiosPromise);
+    render(
+      <MemoryRouter>
+        <LoginForm />
+      </MemoryRouter>
+    );
+    act(() => {
+      fireEvent.change(screen.getByPlaceholderText(/User Name/i), {
+        target: { value: 'abc' },
+      });
+      fireEvent.change(screen.getByPlaceholderText(/Password/i), {
+        target: { value: 'abc' },
+      });
+    });
+    userEvent.click(screen.getByRole('button', { name: /submit/i }));
+    await waitFor(() =>
+      expect(screen.getByText(/incorrect/i)).toBeInTheDocument()
+    );
+    // act(() => {
+    //   fireEvent.change(screen.getByPlaceholderText(/User Name/i), {
+    //     target: { value: 'abc' },
+    //   });
+    // });
+    // await waitFor(() =>
+    //   expect(screen.queryByText(/incorrect/i)).not.toBeInTheDocument()
+    // );
+  });
 });

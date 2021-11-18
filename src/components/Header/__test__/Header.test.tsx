@@ -36,6 +36,7 @@ describe('<Header />', () => {
   //     userEvent.click(screen.getByText('Outter'));
   //     userEvent.click(screen.getByText('Outter'));
   //   })
+  //   userEvent.click(screen.getByText('Outter'));
   //   screen.debug(undefined, 3000)
   //   await waitFor(() => expect(screen.queryByText(/InnerOne/i)).not.toBeInTheDocument());
   // });
