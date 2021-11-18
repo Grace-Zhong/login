@@ -51,3 +51,7 @@ npm run test-c
 ```
 #### Test Coverage
 [<img src="./docs/test_coverage_18Nov2021.png">]()
+
+## Outcome
+[<img src="./docs/home_page.png">]()
+[<img src="./docs/login_page.png">]()
