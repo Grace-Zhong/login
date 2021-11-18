@@ -10,6 +10,7 @@ This project was bootstarpped with
 - TypeScript
 - Material UI
 - Formik
+- Yup
 - Axios
 - React Testing Library
 - Jest
@@ -35,6 +36,7 @@ npm start
 ## Run fake backend
 ```
 cd server
+npm install
 npm start
 ```
 
