@@ -1,5 +1,5 @@
 import React from 'react';
-import { act, render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import Header from '../Header';
 import { MemoryRouter } from 'react-router';
 import userEvent from '@testing-library/user-event';
@@ -32,10 +32,7 @@ describe('<Header />', () => {
         <Header />
       </MemoryRouter>
     );
-    act(() => {
-      userEvent.click(screen.getByText('Outter'));
-      
-    })
+    userEvent.click(screen.getByText('Outter'));
     userEvent.click(screen.getByText(/innerone/i));
     await waitFor(() => expect(screen.queryByText(/innerone/i)).not.toBeInTheDocument());
   });
