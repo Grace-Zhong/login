@@ -79,7 +79,8 @@
       "src/libs",
       "src/react-app-env.d.ts",
       "src/setupTests.ts",
-      "src/index.tsx"
+      "src/index.tsx",
+      "src/theme.tsx"
     ]
   }
 }
