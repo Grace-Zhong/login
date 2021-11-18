@@ -16,13 +16,15 @@ This project was bootstarpped with
 - Jest
 
 ## Before launch this application
-Following requirements should be satisfied
-1. Node.js is installed with v14.
+1. Node.js v14 is installed.
 2. Install all dependencies
 ```
 npm install
-cd server
-npm install
+```
+3. Configuration
+Create a `.env` file at the root of this repository as follows
+```
+REACT_APP_API_URL=http://localhost:8000
 ```
 
 ## Run Application
@@ -32,6 +34,8 @@ npm start
 
 ## Run backend
 ```
+cd server
+npm install
 npm start
 ```
 
