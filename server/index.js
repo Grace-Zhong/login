@@ -10,7 +10,7 @@ app.post('/login', (req, res) => {
   if (username === 'user' && password === 'user') {
     return res.sendStatus(200);
   }
-  res.sendStatus(304);
+  res.sendStatus(400);
 })
 
 const port = 8000;

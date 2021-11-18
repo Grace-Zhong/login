@@ -5,12 +5,10 @@ import LoginForm from '../components/LoginForm';
 import * as apiUtils from '../../../utils/apiUtils';
 import { AxiosPromise } from 'axios';
 import { act } from 'react-dom/test-utils';
+import userEvent from '@testing-library/user-event';
+import { createMemoryHistory } from 'history';
 
-describe('<LoginForm />', () => {
-
-  afterEach(() => {
-    jest.restoreAllMocks();
-  });
+describe('<LoginForm /> render elements', () => {
 
   it('should render login form', () => {
     render(
@@ -41,10 +39,51 @@ describe('<LoginForm />', () => {
     expect(await screen.findByText(/Password cannot be empty/i)).toBeInTheDocument();
   });
 
-  // it('should call setOpenSuccessMsg() if mockapi return 200', async () => {
-  //   const login = jest
+  // it('should redirect to Home page if click cancel', async () => {
+  //   const history = createMemoryHistory();
+  //   render(
+  //     <MemoryRouter>
+  //       <LoginForm />
+  //     </MemoryRouter>
+  //   );
+  //   fireEvent.click(screen.getByText(/Cancel/i));
+    
+  // });
+
+});
+
+describe('<LoginForm /> call apis', () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  it('should display/hide Login successful! if mockapi return 200', async () => {
+    jest
+      .spyOn(apiUtils, 'login')
+      .mockResolvedValue({ status: 200 } as unknown as AxiosPromise);
+    render(
+      <MemoryRouter>
+        <LoginForm />
+      </MemoryRouter>
+    );
+    act(() => {
+      fireEvent.change(screen.getByPlaceholderText(/User Name/i), {
+        target: { value: 'user' },
+      });
+      fireEvent.change(screen.getByPlaceholderText(/Password/i), {
+        target: { value: 'user' },
+      });
+    });
+    userEvent.click(screen.getByRole('button', {name: /submit/i}));
+    await waitFor(() => expect(screen.getByText(/Login successful!/i)).toBeInTheDocument());
+    userEvent.click(screen.getByRole('button', {name: /submit/i}));
+    await waitFor(() => expect(screen.queryByText(/Login successful!/i)).not.toBeInTheDocument());
+  });
+
+  // it('should display Incorrect username or password! if mockapi return 400', async () => {
+  //   jest
   //     .spyOn(apiUtils, 'login')
-  //     .mockResolvedValue({ status: 200 } as unknown as AxiosPromise);
+  //     .mockResolvedValue({ status: 400 } as unknown as AxiosPromise);
   //   render(
   //     <MemoryRouter>
   //       <LoginForm />
@@ -52,15 +91,14 @@ describe('<LoginForm />', () => {
   //   );
   //   act(() => {
   //     fireEvent.change(screen.getByPlaceholderText(/User Name/i), {
-  //       target: { value: 'user' },
+  //       target: { value: 'abc' },
   //     });
   //     fireEvent.change(screen.getByPlaceholderText(/Password/i), {
-  //       target: { value: 'user' },
+  //       target: { value: 'abc' },
   //     });
-  //     fireEvent.click(screen.getByText(/Submit/i));
   //   });
-  //   await waitFor(() => expect(screen.getByText(/Login successful!/i)).toBeInTheDocument());
-  //   // await waitFor(() => expect(login).toBeCalled());
-  //   // await waitFor(() => expect(setOpenSuccessMsg).toBeCalled());
+  //   userEvent.click(screen.getByRole('button', {name: /submit/i}));
+  //   screen.debug(undefined, 3000);
+  //   await waitFor(() => expect(screen.getByText(/Incorrec/i)).toBeInTheDocument());
   // });
 });

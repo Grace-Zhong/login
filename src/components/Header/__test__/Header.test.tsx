@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import Header from '../Header';
 import { MemoryRouter } from 'react-router';
 import userEvent from '@testing-library/user-event';
@@ -26,17 +26,17 @@ describe('<Header />', () => {
     userEvent.click(screen.getByText('Home'));
   });
 
-  // it('should click space and not render submenu', () => {
+  // it('should click space and not render submenu', async () => {
   //   render(
   //     <MemoryRouter>
   //       <Header />
   //     </MemoryRouter>
   //   );
-  //   userEvent.click(screen.getByText('Outter'));
-  //   // userEvent.click(screen.getByText('Outter'));
-  //   // userEvent.click(screen.getByText('Home'));
-  //   screen.debug(undefined, 30000);
-  //   expect(screen.queryByText(/InnerOne/i)).not.toBeInTheDocument();
-  //   // expect(screen.queryByText(/InnerOne/i)).toHaveStyle("display: none");
+  //   act(() => {
+  //     userEvent.click(screen.getByText('Outter'));
+  //     userEvent.click(screen.getByText('Outter'));
+  //   })
+  //   screen.debug(undefined, 3000)
+  //   await waitFor(() => expect(screen.queryByText(/InnerOne/i)).not.toBeInTheDocument());
   // });
 });
