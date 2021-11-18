@@ -10,6 +10,6 @@ describe('<Home />', () => {
         <Home />
       </MemoryRouter>
     );
-    expect(screen.getByText('Hello World!')).toBeInTheDocument();
+    expect(screen.getByText('Home Page')).toBeInTheDocument();
   });
 });

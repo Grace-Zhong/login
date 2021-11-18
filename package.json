@@ -35,7 +35,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "test-c": "react-scripts test --coverage --colors --silent --watchAll=false"
+    "test-c": "react-scripts test --coverage --colors --watchAll=false"
   },
   "eslintConfig": {
     "extends": [

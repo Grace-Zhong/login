@@ -28,7 +28,6 @@ const Header = () => {
       return (
         <div key={item.id}>
           <Button
-            id="basic-button"
             aria-controls="basic-menu"
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
