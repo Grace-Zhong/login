@@ -21,7 +21,7 @@ This project was bootstarpped with
 ```
 npm install
 ```
-3. Configuration
+3. Configuration <br>
 Create a `.env` file at the root of this repository as follows
 ```
 REACT_APP_API_URL=http://localhost:8000
@@ -52,6 +52,8 @@ npm run test-c
 #### Test Coverage
 [<img src="./docs/test_coverage_18Nov2021.png">]()
 
-## Outcome
+## Snapshots
+- Home Page
 [<img src="./docs/home_page.png">]()
+- Login Page
 [<img src="./docs/login_page.png">]()
