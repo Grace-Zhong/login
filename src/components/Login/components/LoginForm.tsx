@@ -57,7 +57,6 @@ const LoginForm = ({ setOpenSuccessMsg, setOpenFailMsg }: IProps) => {
             placeholder="User Name"
             as={TextField}
             className={classes.textfield}
-            sx={{ mb: 5 }}
           />
           {errors.username && touched.username && (
             <div className={classes.error_msg}>{errors.username}</div>
@@ -69,7 +68,7 @@ const LoginForm = ({ setOpenSuccessMsg, setOpenFailMsg }: IProps) => {
             type="password"
             as={TextField}
             className={classes.textfield}
-            sx={{ mb: 5 }}
+            sx={{ mt: 5 }}
           />
           {errors.password && touched.password && (
             <div className={classes.error_msg}>{errors.password}</div>
