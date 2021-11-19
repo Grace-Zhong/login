@@ -17,8 +17,8 @@ describe('<LoginForm /> render elements', () => {
     );
     expect(screen.getByPlaceholderText(/User Name/i)).toBeInTheDocument();
     expect(screen.getByPlaceholderText(/Password/i)).toBeInTheDocument();
-    expect(screen.getByText(/Submit/i)).toBeInTheDocument();
-    expect(screen.getByText(/Cancel/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Submit/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Cancel/i })).toBeInTheDocument();
   });
 
   it('should display error message when username or password is empty', async () => {
@@ -33,7 +33,7 @@ describe('<LoginForm /> render elements', () => {
     fireEvent.change(screen.getByPlaceholderText(/Password/i), {
       target: { value: '' },
     });
-    fireEvent.click(screen.getByText(/Submit/i));
+    fireEvent.click(screen.getByRole('button', { name: /Submit/i }));
     expect(
       await screen.findByText(/Username cannot be empty/i)
     ).toBeInTheDocument();
@@ -50,7 +50,7 @@ describe('<LoginForm /> render elements', () => {
         <LoginForm />
       </MemoryRouter>
     );
-    fireEvent.click(screen.getByText(/Cancel/i));
+    fireEvent.click(screen.getByRole('button', { name: /Cancel/i }));
     expect(navigate).toBeCalledWith('/');
   });
 });
@@ -108,8 +108,9 @@ describe('<LoginForm /> call apis', () => {
     await waitFor(() =>
       expect(screen.getByText(/incorrect/i)).toBeInTheDocument()
     );
-
-    await waitFor(() => expect(screen.queryByText(/incorrect/i)).not.toBeVisible());
+    await waitFor(() =>
+      expect(screen.queryByText(/incorrect/i)).not.toBeVisible()
+    );
   });
 
   it('should do nothing if mockApi not return 200', async () => {
@@ -130,8 +131,6 @@ describe('<LoginForm /> call apis', () => {
       });
     });
     userEvent.click(screen.getByRole('button', { name: /submit/i }));
-    await waitFor(() =>
-      expect(login).not.toBeCalled()
-    );
+    await waitFor(() => expect(login).not.toBeCalled());
   });
 });
