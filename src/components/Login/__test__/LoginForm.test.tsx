@@ -43,15 +43,15 @@ describe('<LoginForm /> render elements', () => {
   });
 
   it('should redirect to Home page if click cancel', async () => {
-    const nagivate = jest.fn();
-    jest.spyOn(history, 'useNavigate').mockReturnValue(nagivate);
+    const navigate = jest.fn();
+    jest.spyOn(history, 'useNavigate').mockReturnValue(navigate);
     render(
       <MemoryRouter>
         <LoginForm />
       </MemoryRouter>
     );
     fireEvent.click(screen.getByText(/Cancel/i));
-    expect(nagivate).toBeCalledWith('/');
+    expect(navigate).toBeCalledWith('/');
   });
 });
 
@@ -60,7 +60,7 @@ describe('<LoginForm /> call apis', () => {
     jest.restoreAllMocks();
   });
 
-  it('should display/hide Login successful! if mockapi return 200', async () => {
+  it('should display/hide Login successful! if mockApi return 200', async () => {
     jest
       .spyOn(apiUtils, 'login')
       .mockResolvedValue({ status: 200 } as unknown as AxiosPromise);
@@ -87,9 +87,9 @@ describe('<LoginForm /> call apis', () => {
     );
   });
 
-  it('should display Incorrect username or password! if mockapi return 400', async () => {
+  it('should display Incorrect username or password! if mockApi return 400', async () => {
     jest.spyOn(apiUtils, 'login').mockRejectedValue({
-      respose: { status: 400 },
+      response: { status: 400 },
     } as unknown as AxiosPromise);
     render(
       <MemoryRouter>
@@ -112,9 +112,9 @@ describe('<LoginForm /> call apis', () => {
     await waitFor(() => expect(screen.queryByText(/incorrect/i)).not.toBeVisible());
   });
 
-  it('should do nothing if mockapi not return 200', async () => {
+  it('should do nothing if mockApi not return 200', async () => {
     const login = jest.spyOn(apiUtils, 'login').mockResolvedValue({
-      respose: { status: 300 },
+      response: { status: 300 },
     } as unknown as AxiosPromise);
     render(
       <MemoryRouter>
