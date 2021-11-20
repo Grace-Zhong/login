@@ -31,6 +31,7 @@ npm install
 
 
 ## Run Application
+Switch to the root of this repository, run following command
 ```
 npm run start-all
 ```
