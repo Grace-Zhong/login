@@ -24,7 +24,9 @@ REACT_APP_API_URL=http://localhost:8000
 ```
 3. Install all dependencies
 ```
-npm install-all
+npm install
+cd server
+npm install
 ```
 
 

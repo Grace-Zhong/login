@@ -37,8 +37,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "test-c": "react-scripts test --coverage --colors --watchAll=false",
-    "start-all": "concurrently \"npm start\" \"cd server && npm start\"",
-    "install-all": "concurrently \"npm install\" \"cd server && npm install\""
+    "start-all": "concurrently \"npm start\" \"cd server && npm start\""
   },
   "eslintConfig": {
     "extends": [
