@@ -17,26 +17,20 @@ This project was bootstarpped with
 
 ## Before launch this application
 1. Node.js v14 is installed.
-2. Install all dependencies
-```
-npm install
-```
-3. Configuration <br>
+2. Configuration <br>
 Create a `.env` file at the root of this repository as follows
 ```
 REACT_APP_API_URL=http://localhost:8000
 ```
+3. Install all dependencies
+```
+npm install-all
+```
+
 
 ## Run Application
 ```
-npm start
-```
-
-## Run backend
-```
-cd server
-npm install
-npm start
+npm run start-all
 ```
 
 ## User Account

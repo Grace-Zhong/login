@@ -17,6 +17,7 @@
     "@types/react-dom": "^17.0.0",
     "@types/yup": "^0.29.13",
     "axios": "^0.24.0",
+    "concurrently": "^6.4.0",
     "dotenv": "^10.0.0",
     "formik": "^2.2.9",
     "history": "^5.1.0",
@@ -35,7 +36,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "test-c": "react-scripts test --coverage --colors --watchAll=false"
+    "test-c": "react-scripts test --coverage --colors --watchAll=false",
+    "start-all": "concurrently \"npm start\" \"cd server && npm start\"",
+    "install-all": "concurrently \"npm install\" \"cd server && npm install\""
   },
   "eslintConfig": {
     "extends": [
